@@ -1,6 +1,7 @@
 describe("plane", function() {
 
   var plane;
+  var airport;
 
   beforeEach(function() {
     plane = new Plane();
@@ -28,5 +29,25 @@ describe("plane", function() {
     });
 
   });
+
+});
+
+
+
+describe('Airport', function() {
+
+  beforeEach(function() {
+    airport = new Airport();
+  });
+
+  describe('default', function() {
+
+    it('should have no planes on creation', function() {
+      expect(airport.planes.length).toEqual(0)
+    });
+
+  });
+
+  
 
 });

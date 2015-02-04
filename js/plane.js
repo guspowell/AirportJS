@@ -9,3 +9,9 @@ Plane.prototype.land = function () {
 Plane.prototype.takeOff = function () {
   this.flying = true;
 };
+
+
+
+var Airport = function() {
+  this.planes = [];
+};
