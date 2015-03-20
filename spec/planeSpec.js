@@ -28,16 +28,21 @@ describe("plane", function() {
       expect(plane.flying).toBe(true)
     });
 
+    it("should not be able to land if it is not flying", function () {
+      plane.land();
+      expect(function(){ plane.land() }).toThrowError("plane already landed");
+    });
+
   });
 
 });
-
 
 
 describe('Airport', function() {
 
   beforeEach(function() {
     airport = new Airport();
+    plane = new Plane();
   });
 
   describe('default', function() {
@@ -48,6 +53,13 @@ describe('Airport', function() {
 
   });
 
-  
+  // describe('accepting planes', function() {
+  //
+  //   it('should be able to accept a plane for landing', function() {
+  //     plane.land
+  //   });
+  //
+  // });
+
 
 });
