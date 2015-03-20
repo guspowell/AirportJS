@@ -33,6 +33,10 @@ describe("plane", function() {
       expect(function(){ plane.land() }).toThrowError("plane already landed");
     });
 
+    it("should not be able to take if it is flying", function () {
+      expect(function(){ plane.takeOff() }).toThrowError("plane already flying");
+    });
+
   });
 
 });
