@@ -1,13 +1,12 @@
-var Airport = function(weather) {
+var Airport = function() {
   this.planes = [];
   this.capacity = 20;
-  this.airportWeather = weather.forecast();
 };
 
-Airport.prototype.acceptPlane = function (plane) {
+Airport.prototype.acceptPlane = function (plane, weather) {
   if (airport.full()) {
     throw Error("airport is full");
-  } else if (this.airportWeather === "stormy") {
+  } else if (weather.todaysWeather === "stormy") {
     throw Error("the weather is too stormy to land");
   } else {
     plane.land();
@@ -15,7 +14,7 @@ Airport.prototype.acceptPlane = function (plane) {
   }
 };
 
-Airport.prototype.launchPlane = function (plane) {
+Airport.prototype.launchPlane = function (plane, weather) {
   plane.takeOff();
   this.planes.splice(plane);
 };
