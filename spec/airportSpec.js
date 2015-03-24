@@ -20,7 +20,6 @@ describe('Airport', function() {
   describe('default', function() {
 
     it('should have no planes on creation', function() {
-      console.log(weather.todaysWeather())
       expect(airport.planes.length).toEqual(0)
     });
 
