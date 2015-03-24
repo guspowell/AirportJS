@@ -6,7 +6,7 @@ var Airport = function() {
 Airport.prototype.acceptPlane = function (plane, weather) {
   if (airport.full()) {
     throw Error("airport is full");
-  } else if (weather.todaysWeather === "stormy") {
+  } else if (weather.todaysWeather() === "stormy") {
     throw Error("the weather is too stormy to land");
   } else {
     plane.land();
@@ -15,8 +15,12 @@ Airport.prototype.acceptPlane = function (plane, weather) {
 };
 
 Airport.prototype.launchPlane = function (plane, weather) {
-  plane.takeOff();
-  this.planes.splice(plane);
+  if (weather.todaysWeather() === "stormy") {
+    throw Error("the weather is too stormy to take off");
+  } else {
+    plane.takeOff();
+    this.planes.splice(plane);
+  }
 };
 
 Airport.prototype.planeCount = function () {

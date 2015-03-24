@@ -20,6 +20,7 @@ describe('Airport', function() {
   describe('default', function() {
 
     it('should have no planes on creation', function() {
+      console.log(weather.todaysWeather())
       expect(airport.planes.length).toEqual(0)
     });
 
@@ -31,7 +32,7 @@ describe('Airport', function() {
     it('number of planes should reduce by one when the airport launches a plane', function() {
       airport.acceptPlane(plane, weather);
       expect(airport.planes.length).toEqual(1);
-      airport.launchPlane(plane);
+      airport.launchPlane(plane, weather);
       expect(airport.planes.length).toEqual(0);
     });
 
@@ -53,17 +54,16 @@ describe('Airport', function() {
 
     it('plane cannoot land if the weather is stormy', function() {
       var badWeather = new Weather();
-      spyOn(badWeather, "forecast").and.returnValue("stormy");
+      spyOn(badWeather, 'todaysWeather').and.returnValue('stormy');
       gatwick = new Airport();
-      expect(function() { gatwick.acceptPlane(plane, badWeather) }).toThrowError("the weather is too stormy to land")
+      expect(function() { gatwick.acceptPlane(plane, badWeather) }).toThrowError("the weather is too stormy to land");
     });
 
-    it('plane cannoot land if the weather is stormy', function() {
-      console.log(airport.airportWeather)
+    it('plane cannoot take off if the weather is stormy', function() {
       var badWeather = new Weather();
-      spyOn(badWeather, "forecast").and.returnValue("stormy");
-      gatwick = new Airport()
-      expect(function() { gatwick.acceptPlane(plane, badWeather) }).toThrowError("the weather is too stormy to land")
+      spyOn(badWeather, 'todaysWeather').and.returnValue('stormy');
+      gatwick = new Airport();
+      expect(function() { gatwick.launchPlane(plane, badWeather) }).toThrowError("the weather is too stormy to take off");
     });
 
   });
